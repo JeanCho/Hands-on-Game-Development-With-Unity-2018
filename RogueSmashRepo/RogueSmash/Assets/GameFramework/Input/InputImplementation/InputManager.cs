@@ -12,7 +12,7 @@ namespace MyCompany.GameFramework.InputManagement
         protected ImouseInputHandler mouseInputHandler;
         protected Dictionary<string, Action> actionMap = new Dictionary<string, Action>();
         
-        public InputManager(InputBindings inputBindings, ImouseInputHandler imouseInputHandler)
+        public InputManager(InputBindings inputBindings, ImouseInputHandler mouseInputHandler)
         {
             this.inputBindings = inputBindings;
             this.mouseInputHandler = mouseInputHandler;
@@ -42,12 +42,16 @@ namespace MyCompany.GameFramework.InputManagement
         {
             foreach (var kvp in inputBindings.KeyBindings)
             {
-                Action action;
-                actionMap.TryGetValue(kvp.Key, out action);
-                if(action != null)
+                if(Input.GetKeyDown(kvp.Value))
                 {
-                    action.Invoke();
+                    Action action;
+                    actionMap.TryGetValue(kvp.Key, out action);
+                    if (action != null)
+                    {
+                        action.Invoke();
+                    }
                 }
+                
             }
         }
     }

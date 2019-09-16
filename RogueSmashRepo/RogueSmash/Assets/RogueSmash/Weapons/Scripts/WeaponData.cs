@@ -21,7 +21,10 @@ namespace MyCompany.RogueSmash.Player
         {
             get { return maxAmmo;  }
         }
-
+        public float MinFireInterval
+        {
+            get { return minFireInterval; }
+        }
         public float ReloadTime
         {
             get { return reloadTime; }

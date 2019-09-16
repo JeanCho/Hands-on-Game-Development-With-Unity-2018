@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CharcaterDataTemplate
   m_EditorClassIdentifier: 
   characterData:
-    movementSpeed: 10
-    maxHealth: 0
-    maxLives: 0
+    movementSpeed: 15
+    maxHealth: 100
+    maxLives: 3

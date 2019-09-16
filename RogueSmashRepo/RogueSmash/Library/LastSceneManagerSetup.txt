@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/RogueSmash/SandBox/Scenes/SandBox.unity
+- path: Assets/RogueSmash/SandBox/Scenes/EnemySandBox.unity
   isLoaded: 1
   isActive: 1
