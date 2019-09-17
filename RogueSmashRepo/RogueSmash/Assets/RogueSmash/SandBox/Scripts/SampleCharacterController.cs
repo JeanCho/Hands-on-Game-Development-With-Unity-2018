@@ -5,6 +5,8 @@ using MyCompany.RogueSmash.Player;
 using MyCompany.GameFramework.InputManagement;
 using MyCompany.RogueSmash.Weapons;
 using MyCompany.RogueSmash.Achievements;
+using MyCompany.GameFramework.Physics.Interfaces;
+
 namespace MyCompany.RogueSmash.InputManagement
 {
     public class SampleCharacterController : MonoBehaviour
@@ -40,6 +42,23 @@ namespace MyCompany.RogueSmash.InputManagement
         void FixedUpdate()
         {
             CheckForInput();
+        }
+
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            ICollisionEnterHandler[] handlers =
+                collision.gameObject.GetComponents<ICollisionEnterHandler>();
+            if (handlers != null)
+            {
+                foreach (var handler in handlers)
+                {
+                    handler.Handle(this.gameObject, collision);
+
+                }
+            }
+
+            //Destroy(gameObject);
         }
 
         private void CheckForInput()
