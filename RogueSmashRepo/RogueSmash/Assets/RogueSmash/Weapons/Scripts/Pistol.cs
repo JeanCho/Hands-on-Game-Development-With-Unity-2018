@@ -3,22 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyCompany.RogueSmash.Player;
 using MyCompany.GameFramework.Coroutines;
-
+using MyCompany.GameFramework.ResourceSystem.Interfaces;
+using MyCompany.GameFramework.ResourceSystem;
 
 namespace MyCompany.RogueSmash.Weapons
 {
     public class Pistol : IWeapon
     {
         private WeaponData weaponData;
-        private int currentAmmo;
+        //private int currentAmmo;
         private bool isReloading = false;
         private float lastFire = 0;
         private Transform actorLocation;
+        private IResource ammo;
+
+        public IResource Ammo
+        {
+            get { return ammo; }
+        }
 
         public Pistol(WeaponData weaponData, GameObject actor)
         {
             this.weaponData = weaponData;
-            currentAmmo = weaponData.MaxAmmo;
+            //currentAmmo = weaponData.MaxAmmo;
+            ammo = new Ammo(weaponData.MaxAmmo);
             actorLocation = actor.transform;
 
         }
@@ -27,26 +35,26 @@ namespace MyCompany.RogueSmash.Weapons
         {
             if(lastFire + weaponData.MinFireInterval > Time.time)
             {
-                Debug.LogWarning("CLICK");
+                //Debug.LogWarning("CLICK");
                 return false;
             }
             
             if(isReloading)
             {
-                Debug.LogWarning("RELOADING");
+                //Debug.LogWarning("RELOADING");
                 return false;
             }
 
-            if(currentAmmo >0)
+            if(ammo.CurrentValue >0)
             {
-                currentAmmo--;
+                ammo.Remove(1.0f);
                 lastFire = Time.time;
                 SpawnProjectile();
-                Debug.Log("PEW" + currentAmmo + "/" + weaponData.MaxAmmo);
+                //Debug.Log("PEW" + currentAmmo + "/" + weaponData.MaxAmmo);
                 return true;
             }
 
-            if(currentAmmo <=0 && weaponData.DoesAutoReload)
+            if(ammo.CurrentValue <= 0 && weaponData.DoesAutoReload)
             {
                 Debug.LogWarning("RELOADING");
                 Reload();
@@ -54,7 +62,7 @@ namespace MyCompany.RogueSmash.Weapons
             }
             else
             {
-                Debug.LogWarning("OUT OF AMMO!");
+                //Debug.LogWarning("OUT OF AMMO!");
                 return false;
             }
         }
@@ -83,8 +91,8 @@ namespace MyCompany.RogueSmash.Weapons
                 timer += Time.deltaTime;
                 yield return null;
             }
-            Debug.LogError("RELOAD COMPLETE");
-            currentAmmo = weaponData.MaxAmmo;
+            //Debug.LogError("RELOAD COMPLETE");
+            ammo.Add(weaponData.MaxAmmo);
             isReloading = false;
         }
     }

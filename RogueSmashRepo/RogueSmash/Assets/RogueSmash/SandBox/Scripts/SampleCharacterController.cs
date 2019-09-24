@@ -20,13 +20,17 @@ namespace MyCompany.RogueSmash.InputManagement
         private IWeapon weapon;
         [SerializeField] private Transform weaponBarrel;
         private AchievemenTracker tracker;
-        private Rigidbody rigidbody;
+        private Rigidbody rigidBody;
 
 
         void Awake()
         {
             tracker = FindObjectOfType<AchievemenTracker>();
-            rigidbody = GetComponent<Rigidbody>();
+            rigidBody = GetComponent<Rigidbody>();
+
+            inputManager = new InputManager(new SampleBindings(), new RadialMouseInputHandler());
+            inputManager.AddActionToBinding("shoot", Shoot);
+            weapon = new Pistol(weaponDataTemplate.WeaponData, weaponBarrel.gameObject);
         }
         public IWeapon Weapon
         {
@@ -34,9 +38,7 @@ namespace MyCompany.RogueSmash.InputManagement
         }
         void Start()
         {
-            inputManager = new InputManager(new SampleBindings(), new RadialMouseInputHandler());
-            inputManager.AddActionToBinding("shoot", Shoot);
-            weapon = new Pistol(weaponDataTemplate.WeaponData, weaponBarrel.gameObject);
+            
         }
 
         void FixedUpdate()
@@ -72,7 +74,7 @@ namespace MyCompany.RogueSmash.InputManagement
             input.x = inputManager.GetAxis("Horizontal");
             input.z = inputManager.GetAxis("Vertical");
             //transform.Translate(input * Time.deltaTime * characterDataTemplate.Data.MovementSpeed, Space.World);
-            rigidbody.velocity = input * characterDataTemplate.Data.MovementSpeed;
+            rigidBody.velocity = input * characterDataTemplate.Data.MovementSpeed;
         }
 
         private void Shoot()

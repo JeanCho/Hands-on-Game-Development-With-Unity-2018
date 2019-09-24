@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 54064299537350022}
   - component: {fileID: 7281795572360558137}
   - component: {fileID: 2286390185131960961}
-  - component: {fileID: 991627002179733653}
   m_Layer: 0
   m_Name: PistolProjectile
   m_TagString: Untagged
@@ -133,17 +132,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e920737499ff55946b3ff312538f5b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &991627002179733653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1565618248048806}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3773161421ba774aac0296f306938af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

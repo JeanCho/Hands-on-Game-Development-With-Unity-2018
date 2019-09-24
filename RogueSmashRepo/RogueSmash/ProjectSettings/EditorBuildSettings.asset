@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/RogueSmash/MainMenu/Scenes/MainMenu.unity
+    guid: acb5474002e44fe47b568cff9afd985e
+  - enabled: 1
+    path: Assets/RogueSmash/SandBox/Scenes/EnemySandBox.unity
+    guid: d02d5524a8a9a4e489600d2d67d00026
+  - enabled: 1
+    path: Assets/RogueSmash/SandBox/Scenes/BossSandBox.unity
+    guid: bdfe533640ae91a40b5266dec5fdc3dc
   m_configObjects: {}
